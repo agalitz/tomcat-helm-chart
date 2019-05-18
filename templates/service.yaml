@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
+  externalTrafficPolicy: Local
   ports:
     - port: {{ .Values.service.port }}
       targetPort: http
@@ -18,7 +19,3 @@ spec:
     app: tomcat-sample-chart
     app.kubernetes.io/name: {{ include "tomcat-sample-chart.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-  ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8888
